@@ -24,16 +24,16 @@ $appRoot = '/' . ($parts[0] ?? '');
   <body>
     <nav class="navbar navbar-expand-lg navbar-light mb-3 border-bottom">
       <div class="container-fluid">
-        <a class="navbar-brand" href="<?= htmlspecialchars($appRoot . '/index.php') ?>">Plataforma Educativa</a>
+        <a class="navbar-brand" href="<?= BASE_URL?>/index.php">Plataforma Educativa</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="<?= htmlspecialchars($appRoot . '/SECCION/USUARIO/index.php') ?>">Usuarios</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= htmlspecialchars($appRoot . '/SECCION/CURSOS/index.php') ?>">Cursos</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= htmlspecialchars($appRoot . '/SECCION/ROL/index.php') ?>">Rol</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= htmlspecialchars($appRoot . '/SECCION/PERMISO/index.php') ?>">Permiso</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/USUARIO/index.php">Usuarios</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/CURSOS/index.php">Cursos</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/ROL/index.php">Rol</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/PERMISO/index.php">Permiso</a></li>
           </ul>
         </div>
       </div>

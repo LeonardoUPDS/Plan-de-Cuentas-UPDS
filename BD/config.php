@@ -18,7 +18,7 @@ if (PRODUCCION) {
     define('DB_PASS', '');
     define('DB_NAME', 'PlataformaEducativa');
 
-    define('BASE_URL', 'http://localhost:8080/PlataformaEducativa');
+    define('BASE_URL', 'http://localhost:80/Plan-de-Cuentas-UPDS');
 }
 
 if(PRODUCCION) {
