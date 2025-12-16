@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../BD/conexion.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 
-// calcular ruta base de la app (ej: /PlataformaEducativa)
+// calcular ruta base de la app (ej: /PlataformaEducativa)7777777
 $parts = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'));
 $appRoot = '/' . ($parts[0] ?? '');
 ?>
