@@ -23,11 +23,13 @@ $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <h2>Mis Cursos</h2>
 
-<?php foreach ($cursos as $curso): ?>
+<?php foreach ($cursos as $Curso):?>
+    
     <div>
         <h3><?= htmlspecialchars($curso['nombre']) ?></h3>
         <a href="../CURSOS/ver_curso.php?id=<?= $curso['idcurso'] ?>">
             <?php
+
             session_start();
             require "../../BD/conexion.php";
             require_once __DIR__ . '/../../TEMPLATE/header.php';
@@ -70,5 +72,6 @@ $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endforeach; ?>
                 </div>
             </div>
-
-            <?php require_once __DIR__ . '/../../TEMPLATE/footer.php'; ?>
+        <?php require_once __DIR__ . '/../../TEMPLATE/footer.php'; ?>
+    </div>
+<?php endforeach; ?>
