@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 $parts = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'));
 $appRoot = '/' . ($parts[0] ?? '');
 ?>
-
+<?php require_once('../SECCION/ROL/verificar_rol.php'); ?>
 <!doctype html>
 <html lang="es">
   <head>
@@ -30,10 +30,13 @@ $appRoot = '/' . ($parts[0] ?? '');
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/USUARIO/index.php">Usuarios</a></li>
             <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/CURSOS/index.php">Cursos</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/ROL/index.php">Rol</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/PERMISO/index.php">Permiso</a></li>
+            <?php
+            if(tieneRol(3)):?>
+              <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/USUARIO/index.php">Usuarios</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/ROL/index.php">Rol</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/PERMISO/index.php">Permiso</a></li>
+            <?php endif;?>
           </ul>
         </div>
       </div>
