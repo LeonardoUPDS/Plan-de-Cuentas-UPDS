@@ -1,7 +1,7 @@
 <?php
 // true = PRODUCCIÓN (InfinityFree)
 // false = LOCAL (XAMPP)
-define('PRODUCCION', false);
+define('PRODUCCION', true);
 
 if (PRODUCCION) {
     // 🌍 INFINITYFREE
