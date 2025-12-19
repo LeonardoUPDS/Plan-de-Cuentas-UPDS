@@ -1,7 +1,7 @@
 <?php
 // true = PRODUCCIÓN (InfinityFree)
 // false = LOCAL (XAMPP)
-define('PRODUCCION', true);
+define('PRODUCCION', false);
 
 if (PRODUCCION) {
     // 🌍 INFINITYFREE
@@ -18,7 +18,7 @@ if (PRODUCCION) {
     define('DB_PASS', '');
     define('DB_NAME', 'PlataformaEducativa');
 
-    define('BASE_URL', 'http://localhost:8080/PlataformaEducativa');
+    define('BASE_URL', 'http://localhost:8080/Plan-de-cuentas-UPDS');
 }
 
 if(PRODUCCION) {

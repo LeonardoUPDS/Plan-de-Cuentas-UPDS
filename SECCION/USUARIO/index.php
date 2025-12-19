@@ -1,6 +1,7 @@
 <?php 
 require_once(__DIR__ . "/../../BD/conexion.php"); 
 require_once(__DIR__ . "/../../TEMPLATE/header.php");
+require_once(__DIR__ . "/../PERMISO/verificar_permiso.php");
 ?>
 <?php
 // Selección de usuarios usando columnas que existen en la BD (ver BD/BaseDatos.sql)
@@ -16,7 +17,9 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <span>Listado de Usuarios</span>
+            <?php if (tienePermiso('Crear')): ?>
             <a href="crear.php" class="btn btn-primary btn-sm">Crear Usuario</a>
+            <?php endif; ?>
         </div>
         <div class="card-body">
     <?php if (!empty($_GET['mensaje'])): ?>
@@ -29,7 +32,9 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <th>Email</th>
                 <th>Rol</th>
                 <th>Estado</th>
-                <th>Acciones</th>
+                <?php if (tienePermiso('Inactivar')): ?>
+                    <th>Acciones</th>
+                <?php endif; ?>
             </tr>
         </thead>
         <tbody>
@@ -40,6 +45,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= htmlspecialchars($usuario['Correo']) ?></td>
                         <td><?= htmlspecialchars($usuario['Rol'] ?? 'N/A') ?></td>
                         <td><?= htmlspecialchars($usuario['Estado']) ?></td>
+                        <?php if(tienePermiso('Inactivar')): ?>
                         <td>
                             <a href="editar.php?id=<?= urlencode($usuario['idUsuario']) ?>" class="btn btn-warning btn-sm">Editar</a>
                             <?php if ($usuario['Estado'] == 'Activo'): ?>
@@ -48,6 +54,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <a href="toggle_estado.php?id=<?= urlencode($usuario['idUsuario']) ?>" class="btn btn-success btn-sm" onclick="return confirm('¿Activar usuario?');">Activar</a>
                             <?php endif; ?>
                         </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
