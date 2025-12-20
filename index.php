@@ -3,7 +3,7 @@ session_start();
 require "BD/conexion.php";
 
 if (!isset($_SESSION['idUsuario'])) {
-        header("Location: AUTH/login.php");
+        header("Location: " . BASE_URL . "/AUTH/login.php");
         exit;
 }
 require_once __DIR__ . '/TEMPLATE/header.php';

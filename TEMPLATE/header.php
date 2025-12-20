@@ -2,6 +2,9 @@
 require_once __DIR__ . '/../BD/conexion.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 
+// Verificar que la sesión local está permitida por la BD (solo si existe sesión)
+require_once __DIR__ . '/../SECCION/SESION/verificar_sesion.php';
+
 // Vincular verificadores de rol y permiso
 require_once __DIR__ . '/../SECCION/ROL/verificar_rol.php';
 require_once __DIR__ . '/../SECCION/PERMISO/verificar_permiso.php';
@@ -44,6 +47,7 @@ $appRoot = '/' . ($parts[0] ?? '');
               <?php endif; ?>
 
               <?php if (tieneRol(3)): // Administrador ?>
+                <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/ADMIN/index.php">Panel</a></li>
                 <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/ROL/index.php">Rol</a></li>
                 <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/PERMISO/index.php">Permiso</a></li>
               <?php endif; ?>
@@ -51,6 +55,34 @@ $appRoot = '/' . ($parts[0] ?? '');
               <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/index.php">Inicio</a></li>
             <?php endif; ?>
           </ul>
+
+          <?php if (isset($_SESSION['idUsuario'])): ?>
+            <?php
+              $stmtUser = $conexion->prepare("SELECT Correo FROM usuario WHERE idUsuario = :id");
+              $stmtUser->bindParam(':id', $_SESSION['idUsuario'], PDO::PARAM_INT);
+              $stmtUser->execute();
+              $userInfo = $stmtUser->fetch(PDO::FETCH_ASSOC);
+              $correoUser = $userInfo['Correo'] ?? 'Perfil';
+
+              $stmtSub = $conexion->prepare("SELECT p.Nombre FROM Suscripcion s JOIN Plan p ON s.idPlan = p.idPlan WHERE s.idUsuario = :id AND s.Estado = 1 ORDER BY s.FechaInicio DESC LIMIT 1");
+              $stmtSub->bindParam(':id', $_SESSION['idUsuario'], PDO::PARAM_INT);
+              $stmtSub->execute();
+              $plan = $stmtSub->fetch(PDO::FETCH_ASSOC);
+            ?>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <?= htmlspecialchars($correoUser) ?><?php if ($plan): ?> <small class="text-muted"> (<?= htmlspecialchars($plan['Nombre']) ?>)</small><?php endif; ?>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                  <li><a class="dropdown-item" href="<?= BASE_URL?>/SECCION/USUARIO/perfil.php">Perfil</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="<?= BASE_URL?>/AUTH/logout.php">Cerrar sesión</a></li>
+                </ul>
+              </li>
+            </ul>
+          <?php endif; ?>
         </div>
       </div>
     </nav>

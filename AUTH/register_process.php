@@ -39,6 +39,22 @@ if ($usuarioExistente) {
     $idUsuario = $conexion->lastInsertId();
 }
 
+// 3️⃣ Asegurar suscripción por defecto (Básico)
+$stmtPlan = $conexion->prepare("SELECT idPlan FROM Plan WHERE Nombre = 'Básico' AND Estado = 1 LIMIT 1");
+$stmtPlan->execute();
+$idPlanBasico = $stmtPlan->fetchColumn() ?: 1;
+
+// Si no tiene suscripción activa, crear una por defecto (30 días)
+$stmtCheckSub = $conexion->prepare("SELECT idSuscripcion FROM Suscripcion WHERE idUsuario = :idUsuario AND Estado = 1");
+$stmtCheckSub->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
+$stmtCheckSub->execute();
+if (!$stmtCheckSub->fetch()) {
+    $stmtInsertSub = $conexion->prepare("INSERT INTO Suscripcion (idUsuario, idPlan, FechaInicio, FechaFin, Estado) VALUES (:idUsuario, :idPlan, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY), 1)");
+    $stmtInsertSub->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
+    $stmtInsertSub->bindParam(":idPlan", $idPlanBasico, PDO::PARAM_INT);
+    $stmtInsertSub->execute();
+}
+
 // 3️⃣ Generar token de verificación
 $token = bin2hex(random_bytes(32));
 $expira = date('Y-m-d H:i:s', strtotime('+24 hours'));
