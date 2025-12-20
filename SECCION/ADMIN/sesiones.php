@@ -9,7 +9,10 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container my-4">
   <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <span>Sesiones</span>
+      <div><span>Sesiones</span></div>
+      <div>
+        <a class="btn btn-secondary btn-sm" href="<?= BASE_URL?>/SECCION/ADMIN/index.php">Volver</a>
+      </div>
     </div>
     <div class="card-body">
       <table class="table table-sm">

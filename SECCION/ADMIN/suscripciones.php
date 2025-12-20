@@ -9,7 +9,10 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container my-4">
   <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <span>Suscripciones</span>
+      <div><span>Suscripciones</span></div>
+      <div>
+        <a class="btn btn-secondary btn-sm" href="<?= BASE_URL?>/SECCION/ADMIN/index.php">Volver</a>
+      </div>
     </div>
     <div class="card-body">
       <table class="table table-sm">
@@ -21,7 +24,15 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <td><?= htmlspecialchars($r['Plan']) ?></td>
               <td><?= htmlspecialchars($r['FechaInicio']) ?></td>
               <td><?= htmlspecialchars($r['FechaFin']) ?></td>
-              <td><?= $r['Estado'] ? 'Activa' : 'Inactiva' ?></td>
+              <td>
+                <?= $r['Estado'] ? 'Activa' : 'Inactiva' ?>
+                <form method="POST" action="<?= BASE_URL?>/SECCION/ADMIN/toggle_estado.php" style="display:inline">
+                  <input type="hidden" name="table" value="Suscripcion">
+                  <input type="hidden" name="id" value="<?= (int)$r['idSuscripcion'] ?>">
+                  <input type="hidden" name="back" value="<?= BASE_URL?>/SECCION/ADMIN/suscripciones.php">
+                  <button type="submit" class="btn btn-sm <?= $r['Estado'] ? 'btn-danger' : 'btn-success' ?>" onclick="return confirm('¿Cambiar estado de la suscripción?')"><?= $r['Estado'] ? 'Desactivar' : 'Activar' ?></button>
+                </form>
+              </td>
             </tr>
           <?php endforeach; ?>
         </tbody>

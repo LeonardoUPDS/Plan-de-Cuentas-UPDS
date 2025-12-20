@@ -38,18 +38,16 @@ $appRoot = '/' . ($parts[0] ?? '');
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <?php if (isset($_SESSION['idUsuario'])): ?>
-              <?php if (tieneRol(2) || tieneRol(3)): ?>
+              <?php if (tieneRol(2)): ?>
                 <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/USUARIO/index.php">Usuarios</a></li>
               <?php endif; ?>
 
-              <?php if (tieneRol(1) || tieneRol(2) || tieneRol(3)): ?>
-                <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/CURSOS/index.php">Cursos</a></li>
+              <?php if (tieneRol(1) || tieneRol(2)): ?>
+                <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/CURSOS/cursoactivos.php">Cursos</a></li>
               <?php endif; ?>
 
               <?php if (tieneRol(3)): // Administrador ?>
                 <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/ADMIN/index.php">Panel</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/ROL/index.php">Rol</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/PERMISO/index.php">Permiso</a></li>
               <?php endif; ?>
             <?php else: ?>
               <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/index.php">Inicio</a></li>
