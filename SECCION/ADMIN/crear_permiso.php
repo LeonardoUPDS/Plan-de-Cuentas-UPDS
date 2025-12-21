@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../BD/conexion.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $descripcion = trim($_POST['descripcion'] ?? '');
     if ($descripcion === '') { $error = 'Descripción requerida'; }
-    else { $ins = $conexion->prepare('INSERT INTO Permiso (descripcion, Estado) VALUES (:desc, 1)'); $ins->execute([':desc'=>$descripcion]); header('Location: permisos.php?success=' . urlencode('Permiso creado')); exit; }
+    else { $ins = $conexion->prepare('INSERT INTO permiso (descripcion, Estado) VALUES (:desc, 1)'); $ins->execute([':desc'=>$descripcion]); header('Location: permisos.php?success=' . urlencode('Permiso creado')); exit; }
 }
 require_once __DIR__ . '/../../TEMPLATE/header.php';
 ?>

@@ -11,19 +11,19 @@ if (empty($_SESSION['idUsuario'])) {
 $idUsuario = (int) $_SESSION['idUsuario'];
 
 // Obtener info de usuario (incluye nombre del rol)
-$stmt = $conexion->prepare("SELECT u.idUsuario, u.Correo, r.Descripcion AS Rol FROM usuario u LEFT JOIN Rol r ON u.idRol = r.idRol WHERE u.idUsuario = :id");
+$stmt = $conexion->prepare("SELECT u.idUsuario, u.Correo, r.Descripcion AS rol FROM usuario u LEFT JOIN rol r ON u.idRol = r.idRol WHERE u.idUsuario = :id");
 $stmt->bindParam(':id', $idUsuario, PDO::PARAM_INT);
 $stmt->execute();
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Obtener suscripción actual
-$stmt = $conexion->prepare("SELECT s.idSuscripcion, p.idPlan, p.Nombre, p.MaxSesiones, p.Precio, s.FechaInicio, s.FechaFin FROM Suscripcion s JOIN Plan p ON s.idPlan = p.idPlan WHERE s.idUsuario = :id AND s.Estado = 1 ORDER BY s.FechaInicio DESC LIMIT 1");
+$stmt = $conexion->prepare("SELECT s.idSuscripcion, p.idPlan, p.Nombre, p.MaxSesiones, p.Precio, s.FechaInicio, s.FechaFin FROM suscripcion s JOIN plan p ON s.idPlan = p.idPlan WHERE s.idUsuario = :id AND s.Estado = 1 ORDER BY s.FechaInicio DESC LIMIT 1");
 $stmt->bindParam(':id', $idUsuario, PDO::PARAM_INT);
 $stmt->execute();
 $sus = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Cargar todos los planes activos
-$planesStmt = $conexion->query("SELECT idPlan, Nombre, MaxSesiones, Precio FROM Plan WHERE Estado = 1 ORDER BY idPlan");
+$planesStmt = $conexion->query("SELECT idPlan, Nombre, MaxSesiones, Precio FROM plan WHERE Estado = 1 ORDER BY idPlan");
 $planes = $planesStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 

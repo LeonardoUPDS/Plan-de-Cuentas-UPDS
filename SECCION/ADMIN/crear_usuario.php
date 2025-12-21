@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // obtener roles para selector
-$roles = $conexion->query('SELECT idRol, Descripcion FROM Rol WHERE Estado = 1')->fetchAll(PDO::FETCH_ASSOC);
+$roles = $conexion->query('SELECT idRol, Descripcion FROM rol WHERE Estado = 1')->fetchAll(PDO::FETCH_ASSOC);
 require_once __DIR__ . '/../../TEMPLATE/header.php';
 ?>
 <div class="container my-4">

@@ -4,7 +4,7 @@ requireAdmin();
 require_once __DIR__ . '/../../BD/conexion.php';
 $id = (int)($_GET['id'] ?? 0); if ($id <= 0) { header('Location: permisos.php'); exit; }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { $descripcion = trim($_POST['descripcion'] ?? ''); $estado = isset($_POST['Estado']) ? 1 : 0; if ($descripcion === '') { $error = 'Descripción requerida'; } else { $stmt = $conexion->prepare('UPDATE Permiso SET descripcion = :desc, Estado = :estado WHERE permiso_id = :id'); $stmt->execute([':desc'=>$descripcion,':estado'=>$estado,':id'=>$id]); header('Location: permisos.php?success=' . urlencode('Permiso actualizado')); exit; } }
-$stmt = $conexion->prepare('SELECT permiso_id, descripcion, Estado FROM Permiso WHERE permiso_id = :id'); $stmt->execute([':id'=>$id]); $r = $stmt->fetch(PDO::FETCH_ASSOC); if (!$r) { header('Location: permisos.php?error=' . urlencode('Permiso no encontrado')); exit; }
+$stmt = $conexion->prepare('SELECT permiso_id, descripcion, Estado FROM permiso WHERE permiso_id = :id'); $stmt->execute([':id'=>$id]); $r = $stmt->fetch(PDO::FETCH_ASSOC); if (!$r) { header('Location: permisos.php?error=' . urlencode('Permiso no encontrado')); exit; }
 require_once __DIR__ . '/../../TEMPLATE/header.php';
 ?>
 <div class="container my-4">

@@ -4,7 +4,7 @@ requireAdmin();
 require_once __DIR__ . '/../../TEMPLATE/header.php';
 
 // Listado de cursos
-$stmt = $conexion->query('SELECT idCurso, Nombre, Descripcion, Estado FROM Curso ORDER BY idCurso DESC');
+$stmt = $conexion->query('SELECT idCurso, Nombre, Descripcion, Estado FROM curso ORDER BY idCurso DESC');
 $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="container my-4">

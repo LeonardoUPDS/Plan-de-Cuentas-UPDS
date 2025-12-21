@@ -3,7 +3,7 @@ require_once __DIR__ . '/check_admin.php';
 requireAdmin();
 require_once __DIR__ . '/../../TEMPLATE/header.php';
 
-$stmt = $conexion->query('SELECT s.idSesion, u.Correo, s.TokenSesion, s.IP, s.Navegador, s.FechaInicio, s.UltimaActividad, s.Activa FROM SesionUsuario s JOIN Usuario u ON s.idUsuario = u.idUsuario ORDER BY s.FechaInicio DESC');
+$stmt = $conexion->query('SELECT s.idSesion, u.Correo, s.TokenSesion, s.IP, s.Navegador, s.FechaInicio, s.UltimaActividad, s.Activa FROM sesionusuario s JOIN usuario u ON s.idUsuario = u.idUsuario ORDER BY s.FechaInicio DESC');
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="container my-4">

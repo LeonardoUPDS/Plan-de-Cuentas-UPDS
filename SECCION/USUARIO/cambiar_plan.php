@@ -16,7 +16,7 @@ $idPlan = (int) ($_POST['idPlan'] ?? 0);
 $idUsuario = (int) $_SESSION['idUsuario'];
 
 // validar plan
-$stmt = $conexion->prepare("SELECT idPlan FROM Plan WHERE idPlan = :idPlan AND Estado = 1");
+$stmt = $conexion->prepare("SELECT idPlan FROM plan WHERE idPlan = :idPlan AND Estado = 1");
 $stmt->bindParam(':idPlan', $idPlan, PDO::PARAM_INT);
 $stmt->execute();
 $plan = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -30,12 +30,12 @@ try {
     $conexion->beginTransaction();
 
     // desactivar suscripciones previas
-    $stmt = $conexion->prepare("UPDATE Suscripcion SET Estado = 0 WHERE idUsuario = :idUsuario AND Estado = 1");
+    $stmt = $conexion->prepare("UPDATE suscripcion SET Estado = 0 WHERE idUsuario = :idUsuario AND Estado = 1");
     $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
     $stmt->execute();
 
     // insertar nueva suscripcion (30 días por defecto)
-    $stmt = $conexion->prepare("INSERT INTO Suscripcion (idUsuario, idPlan, FechaInicio, FechaFin, Estado) VALUES (:idUsuario, :idPlan, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY), 1)");
+    $stmt = $conexion->prepare("INSERT INTO suscripcion (idUsuario, idPlan, FechaInicio, FechaFin, Estado) VALUES (:idUsuario, :idPlan, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY), 1)");
     $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
     $stmt->bindParam(':idPlan', $idPlan, PDO::PARAM_INT);
     $stmt->execute();

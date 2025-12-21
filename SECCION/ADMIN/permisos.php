@@ -3,7 +3,7 @@ require_once __DIR__ . '/check_admin.php';
 requireAdmin();
 require_once __DIR__ . '/../../TEMPLATE/header.php';
 
-$stmt = $conexion->query('SELECT permiso_id, descripcion, Estado FROM Permiso ORDER BY permiso_id');
+$stmt = $conexion->query('SELECT permiso_id, descripcion, Estado FROM permiso ORDER BY permiso_id');
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="container my-4">

@@ -8,7 +8,7 @@ if (!isset($_SESSION['idUsuario'])) {
 }
 
 $stmt = $conexion->prepare("
-    SELECT idcurso, nombre, descripcion
+    SELECT idcurso, Nombre, Descripcion
     FROM curso
     WHERE estado = 1
 ");

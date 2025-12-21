@@ -13,14 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($nombre === '') { header('Location: editar_curso.php?id=' . $id . '&error=' . urlencode('Nombre requerido')); exit; }
 
-    $stmt = $conexion->prepare('UPDATE Curso SET Nombre = :nombre, Descripcion = :desc, Estado = :estado WHERE idCurso = :id');
+    $stmt = $conexion->prepare('UPDATE curso SET Nombre = :nombre, Descripcion = :desc, Estado = :estado WHERE idCurso = :id');
     $stmt->execute([':nombre'=>$nombre, ':desc'=>$descripcion, ':estado'=>$estado, ':id'=>$id]);
 
     header('Location: cursos.php?success=' . urlencode('Curso actualizado'));
     exit;
 }
 
-$stmt = $conexion->prepare('SELECT idCurso, Nombre, Descripcion, Estado FROM Curso WHERE idCurso = :id');
+$stmt = $conexion->prepare('SELECT idCurso, Nombre, Descripcion, Estado FROM curso WHERE idCurso = :id');
 $stmt->execute([':id'=>$id]);
 $curso = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$curso) { header('Location: cursos.php?error=' . urlencode('Curso no encontrado')); exit; }

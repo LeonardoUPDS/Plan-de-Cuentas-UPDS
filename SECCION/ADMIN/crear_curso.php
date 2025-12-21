@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $conexion->prepare('INSERT INTO Curso (Nombre, Descripcion, Estado) VALUES (:nombre, :desc, :estado)');
+    $stmt = $conexion->prepare('INSERT INTO curso (Nombre, Descripcion, Estado) VALUES (:nombre, :desc, :estado)');
     $stmt->execute([':nombre'=>$nombre, ':desc'=>$descripcion, ':estado'=>$estado]);
 
     header('Location: cursos.php?success=' . urlencode('Curso creado'));

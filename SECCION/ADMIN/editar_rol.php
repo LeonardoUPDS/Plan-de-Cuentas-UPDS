@@ -7,9 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $descripcion = trim($_POST['descripcion'] ?? '');
     $estado = isset($_POST['Estado']) ? 1 : 0;
     if ($descripcion === '') { $error = 'Descripción requerida'; }
-    else { $stmt = $conexion->prepare('UPDATE Rol SET Descripcion = :desc, Estado = :estado WHERE idRol = :id'); $stmt->execute([':desc'=>$descripcion,':estado'=>$estado,':id'=>$id]); header('Location: roles.php?success=' . urlencode('Rol actualizado')); exit; }
+    else { $stmt = $conexion->prepare('UPDATE rol SET Descripcion = :desc, Estado = :estado WHERE idRol = :id'); $stmt->execute([':desc'=>$descripcion,':estado'=>$estado,':id'=>$id]); header('Location: roles.php?success=' . urlencode('Rol actualizado')); exit; }
 }
-$stmt = $conexion->prepare('SELECT idRol, Descripcion, Estado FROM Rol WHERE idRol = :id'); $stmt->execute([':id'=>$id]); $r = $stmt->fetch(PDO::FETCH_ASSOC); if (!$r) { header('Location: roles.php?error=' . urlencode('Rol no encontrado')); exit; }
+$stmt = $conexion->prepare('SELECT idRol, Descripcion, Estado FROM rol WHERE idRol = :id'); $stmt->execute([':id'=>$id]); $r = $stmt->fetch(PDO::FETCH_ASSOC); if (!$r) { header('Location: roles.php?error=' . urlencode('Rol no encontrado')); exit; }
 require_once __DIR__ . '/../../TEMPLATE/header.php';
 ?>
 <div class="container my-4">

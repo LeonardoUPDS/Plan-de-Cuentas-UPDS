@@ -1,6 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) session_start();
-// Si ya está logueado, redirigir al inicio
+echo "Si ya está logueado, redirigir al inicio";
 if (!empty($_SESSION['idUsuario'])) {
     header("Location: ../index.php");
     exit;

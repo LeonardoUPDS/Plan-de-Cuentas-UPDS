@@ -6,7 +6,7 @@ function registrarSesion($conexion, $idUsuario) {
     $navegador = $_SERVER['HTTP_USER_AGENT'] ?? 'DESCONOCIDO';
 
     $sql = "
-        INSERT INTO SesionUsuario 
+        INSERT INTO sesionusuario 
         (idUsuario, TokenSesion, IP, Navegador, Activa)
         VALUES (:idUsuario, :token, :ip, :nav, 1)
     ";

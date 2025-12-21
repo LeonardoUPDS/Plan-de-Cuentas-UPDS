@@ -45,10 +45,7 @@ $appRoot = '/' . ($parts[0] ?? '');
               <?php if (tieneRol(1) || tieneRol(2)): ?>
                 <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/CURSOS/cursoactivos.php">Cursos</a></li>
               <?php endif; ?>
-
-              <?php if (tieneRol(3)): // Administrador ?>
-                <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/SECCION/ADMIN/index.php">Panel</a></li>
-              <?php endif; ?>
+              
             <?php else: ?>
               <li class="nav-item"><a class="nav-link" href="<?= BASE_URL?>/index.php">Inicio</a></li>
             <?php endif; ?>
@@ -62,7 +59,7 @@ $appRoot = '/' . ($parts[0] ?? '');
               $userInfo = $stmtUser->fetch(PDO::FETCH_ASSOC);
               $correoUser = $userInfo['Correo'] ?? 'Perfil';
 
-              $stmtSub = $conexion->prepare("SELECT p.Nombre FROM Suscripcion s JOIN Plan p ON s.idPlan = p.idPlan WHERE s.idUsuario = :id AND s.Estado = 1 ORDER BY s.FechaInicio DESC LIMIT 1");
+              $stmtSub = $conexion->prepare("SELECT p.Nombre FROM suscripcion s JOIN plan p ON s.idPlan = p.idPlan WHERE s.idUsuario = :id AND s.Estado = 1 ORDER BY s.FechaInicio DESC LIMIT 1");
               $stmtSub->bindParam(':id', $_SESSION['idUsuario'], PDO::PARAM_INT);
               $stmtSub->execute();
               $plan = $stmtSub->fetch(PDO::FETCH_ASSOC);

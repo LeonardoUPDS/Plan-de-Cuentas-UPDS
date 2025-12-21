@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $descripcion = trim($_POST['descripcion'] ?? '');
     if ($descripcion === '') { $error = 'Descripción requerida'; }
     else {
-        $ins = $conexion->prepare('INSERT INTO Rol (Descripcion, Estado) VALUES (:desc, 1)');
+        $ins = $conexion->prepare('INSERT INTO rol (Descripcion, Estado) VALUES (:desc, 1)');
         $ins->execute([':desc'=>$descripcion]);
         header('Location: roles.php?success=' . urlencode('Rol creado')); exit;
     }

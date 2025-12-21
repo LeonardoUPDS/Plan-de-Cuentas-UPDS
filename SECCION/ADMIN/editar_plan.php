@@ -19,14 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $conexion->prepare('UPDATE Plan SET Nombre = :nombre, MaxSesiones = :max, Precio = :precio, Estado = :estado WHERE idPlan = :id');
+    $stmt = $conexion->prepare('UPDATE plan SET Nombre = :nombre, MaxSesiones = :max, Precio = :precio, Estado = :estado WHERE idPlan = :id');
     $stmt->execute([':nombre'=>$nombre, ':max'=>$max, ':precio'=>$precio, ':estado'=>$estado, ':id'=>$id]);
 
     header('Location: planes.php?success=' . urlencode('Plan actualizado'));
     exit;
 }
 
-$stmt = $conexion->prepare('SELECT idPlan, Nombre, MaxSesiones, Precio, Estado FROM Plan WHERE idPlan = :id');
+$stmt = $conexion->prepare('SELECT idPlan, Nombre, MaxSesiones, Precio, Estado FROM plan WHERE idPlan = :id');
 $stmt->execute([':id'=>$id]);
 $plan = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$plan) { header('Location: planes.php?error=' . urlencode('Plan no encontrado')); exit; }

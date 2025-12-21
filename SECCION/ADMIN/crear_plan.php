@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $conexion->prepare('INSERT INTO Plan (Nombre, MaxSesiones, Precio, Estado) VALUES (:nombre, :max, :precio, :estado)');
+    $stmt = $conexion->prepare('INSERT INTO plan (Nombre, MaxSesiones, Precio, Estado) VALUES (:nombre, :max, :precio, :estado)');
     $stmt->execute([':nombre'=>$nombre, ':max'=>$max, ':precio'=>$precio, ':estado'=>$estado]);
 
     header('Location: planes.php?success=' . urlencode('Plan creado'));

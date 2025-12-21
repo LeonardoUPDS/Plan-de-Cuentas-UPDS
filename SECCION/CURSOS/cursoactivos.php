@@ -9,7 +9,7 @@ if (!$idUsuario) {
 }
 
 // Traer cursos donde el usuario está inscrito y el acceso está activo
-$stmt = $conexion->prepare("SELECT c.idCurso, c.Nombre, c.Descripcion, a.FechaAcceso FROM AccesoCurso a JOIN Curso c ON a.idCurso = c.idCurso WHERE a.idUsuario = :idUsuario AND a.Estado = 1 AND c.Estado = 1");
+$stmt = $conexion->prepare("SELECT c.idCurso, c.Nombre, c.Descripcion, a.FechaAcceso FROM accesocurso a JOIN curso c ON a.idCurso = c.idCurso WHERE a.idUsuario = :idUsuario AND a.Estado = 1 AND c.Estado = 1");
 $stmt->execute([':idUsuario' => $idUsuario]);
 $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>

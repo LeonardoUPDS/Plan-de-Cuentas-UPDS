@@ -4,8 +4,8 @@ function controlarSesiones($conexion, $idUsuario) {
     // 1. Obtener el plan activo del usuario
     $sql = "
         SELECT p.MaxSesiones
-        FROM Suscripcion s
-        JOIN Plan p ON s.idPlan = p.idPlan
+        FROM suscripcion s
+        JOIN plan p ON s.idPlan = p.idPlan
         WHERE s.idUsuario = :idUsuario
           AND s.Estado = 1
           AND (s.FechaFin IS NULL OR s.FechaFin >= NOW())
@@ -27,7 +27,7 @@ function controlarSesiones($conexion, $idUsuario) {
     // 2. Contar sesiones activas
     $sql = "
         SELECT idSesion
-        FROM SesionUsuario
+        FROM sesionusuario
         WHERE idUsuario = :idUsuario
           AND Activa = 1
         ORDER BY FechaInicio ASC
@@ -41,7 +41,7 @@ function controlarSesiones($conexion, $idUsuario) {
         $sesionAntigua = array_shift($sesiones);
 
         $sql = "
-            UPDATE SesionUsuario
+            UPDATE sesionusuario
             SET Activa = 0
             WHERE idSesion = :idSesion
         ";

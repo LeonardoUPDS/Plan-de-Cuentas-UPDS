@@ -9,7 +9,7 @@ if (!isset($_SESSION['idUsuario'], $_SESSION['tokenSesion'])) {
 
 $sql = "
     SELECT idSesion
-    FROM SesionUsuario
+    FROM sesionusuario
     WHERE idUsuario = :idUsuario
       AND TokenSesion = :token
       AND Activa = 1

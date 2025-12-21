@@ -9,14 +9,14 @@ require_once __DIR__ . '/../../TEMPLATE/header.php';
   <div class="row">
     <div class="col-md-3">
       <div class="list-group">
-        <a href="index.php" class="list-group-item list-group-item-action active">Panel</a>
-        <a href="usuarios.php" class="list-group-item list-group-item-action">Usuarios</a>
-        <a href="roles.php" class="list-group-item list-group-item-action">Roles</a>
-        <a href="permisos.php" class="list-group-item list-group-item-action">Permisos</a>
-        <a href="planes.php" class="list-group-item list-group-item-action">Planes</a>
-        <a href="suscripciones.php" class="list-group-item list-group-item-action">Suscripciones</a>
-        <a href="sesiones.php" class="list-group-item list-group-item-action">Sesiones</a>
-        <a href="cursos.php" class="list-group-item list-group-item-action">Cursos</a>
+        <a href="<?= BASE_URL ?>/index.php" class="list-group-item list-group-item-action active">Panel</a>
+        <a href="<?= BASE_URL ?>/SECCION/ADMIN/usuarios.php" class="list-group-item list-group-item-action">Usuarios</a>
+        <a href="<?= BASE_URL ?>/SECCION/ADMIN/roles.php" class="list-group-item list-group-item-action">Roles</a>
+        <a href="<?= BASE_URL ?>/SECCION/ADMIN/permisos.php" class="list-group-item list-group-item-action">Permisos</a>
+        <a href="<?= BASE_URL ?>/SECCION/ADMIN/planes.php" class="list-group-item list-group-item-action">Planes</a>
+        <a href="<?= BASE_URL ?>/SECCION/ADMIN/suscripciones.php" class="list-group-item list-group-item-action">Suscripciones</a>
+        <a href="<?= BASE_URL ?>/SECCION/ADMIN/sesiones.php" class="list-group-item list-group-item-action">Sesiones</a>
+        <a href="<?= BASE_URL ?>/SECCION/ADMIN/cursos.php" class="list-group-item list-group-item-action">Cursos</a>
       </div>
     </div>
     <div class="col-md-9">

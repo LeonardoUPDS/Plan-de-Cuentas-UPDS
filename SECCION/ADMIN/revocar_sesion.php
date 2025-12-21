@@ -8,7 +8,7 @@ if ($id <= 0) {
     header('Location: ' . BASE_URL . '/SECCION/ADMIN/sesiones.php'); exit;
 }
 
-$stmt = $conexion->prepare('UPDATE SesionUsuario SET Activa = 0 WHERE idSesion = :id');
+$stmt = $conexion->prepare('UPDATE sesionusuario SET Activa = 0 WHERE idSesion = :id');
 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
 

@@ -3,7 +3,7 @@ require_once __DIR__ . '/check_admin.php';
 requireAdmin();
 require_once __DIR__ . '/../../TEMPLATE/header.php';
 
-$stmt = $conexion->query('SELECT idPlan, Nombre, MaxSesiones, Precio, Estado FROM Plan ORDER BY idPlan');
+$stmt = $conexion->query('SELECT idPlan, Nombre, MaxSesiones, Precio, Estado FROM plan ORDER BY idPlan');
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="container my-4">

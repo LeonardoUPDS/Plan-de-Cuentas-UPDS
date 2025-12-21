@@ -3,7 +3,7 @@ require_once __DIR__ . '/check_admin.php';
 requireAdmin();
 require_once __DIR__ . '/../../TEMPLATE/header.php';
 
-$stmt = $conexion->query('SELECT idRol, Descripcion, Estado FROM Rol ORDER BY idRol');
+$stmt = $conexion->query('SELECT idRol, Descripcion, Estado FROM rol ORDER BY idRol');
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="container my-4">
