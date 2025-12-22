@@ -38,6 +38,12 @@ if (!empty($_SESSION['idUsuario'])) {
           <div class="d-grid">
             <button class="btn btn-primary" type="submit">Entrar</button>
           </div>
+          <div class="d-grid">
+            <a href="register.php" class="btn btn-secondary">Registrarse</a>
+          </div>
+          <div class="d-grid">
+            <a href="recuperar_password.php" class="btn btn-secondary">Recuperar contraseña</a>
+          </div>
         </form>
       </div>
     </div>
